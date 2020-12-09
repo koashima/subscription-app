@@ -38,13 +38,36 @@ function Comments() {
     },
   });
 
-  if(!result.data){
-    return 'loading...'
+  if (!result.data) {
+    return 'loading...';
   }
   return (
-    <ul>
+    <ul
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       {result.data.gitHub.repository.issue.comments.nodes.map((commentNode) => {
-        return <li key={commentNode.id}>{commentNode.body}</li>;
+        return (
+          <li
+            key={commentNode.id}
+            style={{
+              listStyle: 'none',
+              padding: '10px 20px',
+              background: commentNode.viewerDidAuthor ? '#0B55DB' : '#F5F5F5',
+              marginBottom: 6,
+              borderRadius: 40,
+              width: '60%',
+              alignSelf: commentNode.viewerDidAuthor
+                ? 'flex-end'
+                : 'flex-start',
+            }}
+          >
+            <h3 style={{ margin: 0 }}>{commentNode.author.login}</h3>
+            <p>{commentNode.body}</p>
+          </li>
+        );
       })}
     </ul>
   );
