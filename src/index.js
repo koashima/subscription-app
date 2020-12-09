@@ -6,7 +6,12 @@ import { createClient, Provider } from 'urql';
 import { CLIENT_URL, auth } from './utils/auth';
 import { AuthProvider } from './contexts/AuthContext';
 
-const client = createClient({ url: CLIENT_URL });
+const client = createClient({
+  url: CLIENT_URL,
+  fetchOptions: {
+    headers: { ...auth.authHeaders() },
+  },
+});
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider auth={auth}>

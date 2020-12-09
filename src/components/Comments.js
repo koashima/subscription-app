@@ -11,7 +11,7 @@ const COMMENTS_QUERY = `query CommentsListQuery(
         id
         title
         bodyText
-        comments(first: 10, last: 100) {
+        comments(last: 100) {
           nodes {
             author {
               login
@@ -29,10 +29,25 @@ const COMMENTS_QUERY = `query CommentsListQuery(
 `;
 
 function Comments() {
-  const [result] = useQuery({query: COMMENTS_QUERY});
+  const [result] = useQuery({
+    query: COMMENTS_QUERY,
+    variables: {
+      repoOwner: 'koashima',
+      repoName: 'subscription-app',
+      issueNumber: 1,
+    },
+  });
 
-  console.log(result);
-  return null;
+  if(!result.data){
+    return 'loading...'
+  }
+  return (
+    <ul>
+      {result.data.gitHub.repository.issue.comments.nodes.map((commentNode) => {
+        return <li key={commentNode.id}>{commentNode.body}</li>;
+      })}
+    </ul>
+  );
 }
 
 export default Comments;
