@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { AuthContext } from './contexts/AuthContext';
 import Comments from './components/Comments';
+import Input from './components/Input';
 
 function App() {
   const { login, status } = React.useContext(AuthContext);
@@ -21,6 +21,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Comments />
+        <Input />
       </header>
     </div>
   );
