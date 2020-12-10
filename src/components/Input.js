@@ -23,7 +23,6 @@ mutation NewCommentMutation($body: String!, $subjectId: String!) {
 }
 `;
 
-
 function NewCommentInput() {
   const [mutationResult, executeMutation] = useMutation(NEW_COMMENT_MUTATION);
   const handleSubmit = (body) => {
@@ -35,7 +34,7 @@ function NewCommentInput() {
   return <Input onSubmit={handleSubmit} />;
 }
 
-function Input ({ onSubmit }) {
+function Input({ onSubmit }) {
   const [value, setValue] = React.useState('');
 
   const handleValueChange = (e) => {
@@ -44,18 +43,50 @@ function Input ({ onSubmit }) {
 
   return (
     <form
+      style={{ position: 'sticky', bottom: 0 }}
       onSubmit={(e) => {
         e.preventDefault();
         onSubmit(value);
         setValue('');
       }}
     >
-      <input value={value} onChange={handleValueChange} />
-      <button type="submit">submit</button>
+      <input
+        value={value}
+        onChange={handleValueChange}
+        style={{
+          width: '100%',
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          border: '1px solid #A9A9A9',
+          borderRadius: 20,
+          padding: '5px 15px',
+          background: '#2E2E2E',
+          color: 'whitesmoke',
+          outline: 'none',
+        }}
+      />
+      <button
+        type="submit"
+        style={{
+          position: 'absolute',
+          right: '-30px',
+          top: '2px',
+          borderRadius: 100,
+          background: '#0B55DB',
+          color:'white',
+          border: 'none',
+          padding: 3,
+          width: 23, 
+          fontWeight: 900,
+          fontSize: 16,
+
+        }}
+      >
+        submit
+      </button>
     </form>
   );
-};
-
-
+}
 
 export default NewCommentInput;

@@ -20,8 +20,10 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Comments />
-        <Input />
+        <div style={{ minWidth: 400 }}>
+          <Comments />
+          <Input />
+        </div>
       </header>
     </div>
   );
