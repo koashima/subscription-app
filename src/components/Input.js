@@ -74,16 +74,15 @@ function Input({ onSubmit }) {
           top: '2px',
           borderRadius: 100,
           background: '#0B55DB',
-          color:'white',
+          color: 'white',
           border: 'none',
           padding: 3,
-          width: 23, 
+          width: 23,
           fontWeight: 900,
           fontSize: 16,
-
         }}
       >
-        submit
+        ↑
       </button>
     </form>
   );
